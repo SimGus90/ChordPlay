@@ -1,0 +1,20 @@
+data = '[ \
+         [{"name": "1"}, \
+          {"bpm": "100"}, \
+          {"chord_name": "A", "chord_type": "min", "fret": 1}, \
+          {"chord_name": "B", "chord_type": "min", "fret": 3},\
+          {"chord_name": "A", "chord_type": "5", "fret": 1}, \
+          {"chord_name": "B", "chord_type": "5", "fret": 3}],\
+         [{"name": "2"}, \
+          {"bpm": "105"}, \
+          {"chord_name": "A", "chord_type": "maj", "fret": 1}, \
+          {"chord_name": "A", "chord_type": "5", "fret": 1}, \
+          {"chord_name": "A", "chord_type": "min", "fret": 1}, \
+          {"chord_name": "A", "chord_type": "dim", "fret": 1}], \
+         [{"name": "3"}, \
+          {"bpm": "120"}, \
+          {"chord_name": "G", "chord_type": "min", "fret": 4}, \
+          {"chord_name": "G", "chord_type": "5", "fret": 4}, \
+          {"chord_name": "F#", "chord_type": "min", "fret": 4}, \
+          {"chord_name": "F#", "chord_type": "5", "fret": 4}] \
+        ]'

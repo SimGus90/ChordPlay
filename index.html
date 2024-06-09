@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Прогрессия аккордов</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+<wrapper>
+<header class="header">
+    <h1 class="header-Topic" style="display: inline-block; margin-right: 40px;">Прогрессия аккордов</h1>
+    <button style="border-radius: 5px; background-color: black; border-color: white; margin: 0;" class="more" id="m_help">Помощь</button>
+    <button style="border-radius: 5px; background-color: black; border-color: white; margin: 0;" class="more" id="m_levels">Уровни</button>
+</header>
+
+<main>
+
+<div style="text-align: center;">
+<label style="font-family: sans-serif; font-weight: 600; color: #304f96">Аккорд:</label>
+<label id="l_chord" style="font-family: sans-serif; font-weight: 800; color: #304f96">Amaj</label>
+</div>
+
+<label style="font-family: sans-serif; font-weight: 600; color: #304f96">Тоника</label>
+
+<div>
+<button class="button_note" id='b_A'>A</button>
+<button class="button_note" id='b_A#'>A#</button>
+<button class="button_note" id='b_B'>B</button>
+<button class="button_note" id='b_C'>C</button>
+<button class="button_note" id='b_C#'>C#</button>
+<button class="button_note" id='b_D'>D</button>
+<button class="button_note" id='b_D#'>D#</button>
+<button class="button_note" id='b_E'>E</button>
+<button class="button_note" id='b_F'>F</button>
+<button class="button_note" id='b_F#'>F#</button>
+<button class="button_note" id='b_G'>G</button>
+<button class="button_note" id='b_G#'>G#</button>
+</div>
+
+<hr>
+<label style="font-family: sans-serif; font-weight: 600; color: #304f96">Свойство</label>
+
+<div>
+<button class="button_note_type" id='b_maj'>maj</button>
+<button class="button_note_type" id='b_min'>min</button>
+<button class="button_note_type" id='b_7'>7</button>
+<button class="button_note_type" id='b_5'>5</button>
+<button class="button_note_type" id='b_dim'>dim</button>
+<button class="button_note_type" id='b_dim7'>dim7</button>
+</div>
+
+<hr>
+<div id="div_table"></div>
+</div>
+
+<div>
+<button id='b_addChord' style="width: 80px;">Добавить</button>
+<button id='b_removeChord' style="width: 80px;">Убрать</button>
+
+<label style="padding-left: 20px; font-family: sans-serif; font-weight: 600; color: #304f96">лад</label>
+
+<button id='b_decrease_value_fret'><img src="img/left.png" width="30" height="30">-</button>
+<label id='value_fret'>1</label>
+<button id='b_increase_value_fret'><img src="img/right.png" width="30" height="30">+</button>
+</div>
+<hr>
+
+<div>
+<button class="button_note" style="width: 80px;" id='b_replay'>Повтор</button>
+<button id='b_play' style="width: 80px;">Играть</button>
+
+<label style="padding-left: 20px; font-family: sans-serif; font-weight: 600; color: #304f96">bpm</label>
+
+<button id='b_decrease_value_BPM'><img src="img/remove.png" width="30" height="30">-</button>
+<label id='value_BPM'>120</label>
+<button id='b_increase_value_BPM'><img src="img/add.png" width="30" height="30">+</button>
+</div>
+
+<hr>
+<div id="div_chords_buttons"></div>
+<div id="div_chords_tab" style="display: flex; flex-direction: row; flex-wrap: wrap;"></div>
+<hr id="hr_print" style="visibility:collapse;">
+<div style="float: right;">
+  <button id='b_print' style="visibility:collapse;">Печать</button>
+</div>
+</main>
+
+<footer align="center" class="footer"></footer>
+</wrapper>
+</body>
+
+<!--модальное окно универслаьное-->
+<div class="modal" id="modal">
+  <span style="float: right; font-size: 36px; cursor: pointer; transform: translate(50%, -50%);" class="close" id="close_modal">×</span>
+  <div style="text-align: center;" class="modal-header">
+    <h2 id="modal_header_h2" style="font-family:'Franklin Gothic';"></h2>
+  </div>
+  <div class="modal-body" id="modal_body">
+  </div>
+</div>
+</html>
+
+<script type="text/javascript" src="data.json"></script>
+<script> let mydata = JSON.parse(data); </script>
+<script type="text/javascript" src="print.js"></script>
+<script type="text/javascript" src="audio.js"></script>
+<script type="text/javascript" src="modal.js"></script>
+<script type="text/javascript" src="chord_note_type.js"></script>
+<script type="text/javascript" src="play_replay.js"></script>
+<script type="text/javascript" src="render.js"></script>
+<script type="text/javascript" src="main.js"></script>
+
+<script>
+const button_increase_value_fret = document.getElementById('b_increase_value_fret');
+const button_decrease_value_fret = document.getElementById('b_decrease_value_fret');
+const value_fret = document.getElementById('value_fret');
+
+const button_A = document.getElementById('b_A');
+const button_Ab = document.getElementById('b_A#');
+const button_B = document.getElementById('b_B');
+const button_C = document.getElementById('b_C');
+const button_Cb = document.getElementById('b_C#');
+const button_D = document.getElementById('b_D');
+const button_Db = document.getElementById('b_D#');
+const button_E = document.getElementById('b_E');
+const button_F = document.getElementById('b_F');
+const button_Fb = document.getElementById('b_F#');
+const button_G = document.getElementById('b_G');
+const button_Gb = document.getElementById('b_G#');
+
+const button_maj = document.getElementById('b_maj');
+const button_min = document.getElementById('b_min');
+const button_7 = document.getElementById('b_7');
+const button_5 = document.getElementById('b_5');
+const button_dim = document.getElementById('b_dim');
+const button_dim7 = document.getElementById('b_dim7');
+
+const button_addChord = document.getElementById('b_addChord');
+const button_removeChord = document.getElementById('b_removeChord');
+
+const button_replay = document.getElementById('b_replay');
+const button_play = document.getElementById('b_play');
+
+const button_increase_value_BPM = document.getElementById('b_increase_value_BPM');
+const button_decrease_value_BPM = document.getElementById('b_decrease_value_BPM');
+const value_BPM = document.getElementById('value_BPM');
+
+const button_print = document.getElementById('b_print');
+
+// Функция для увеличения номера лада
+function increase_value_fret() {
+  fret_cur++;
+  if (fret_cur > 21) fret_cur = 21;
+  update_value_fret();
+}
+
+// Функция для уменьшения номера лада
+function decrease_value_fret() {
+  fret_cur--;
+  if (fret_cur < 1) fret_cur = 1;
+  update_value_fret();
+}
+
+function update_value_fret() {
+  value_fret.textContent = fret_cur;
+  update_Table();
+  update_cur_chord_params();
+  update_Chords_Tab();
+  update_Chords_Buttons();
+}
+
+let intervalId;
+function startIncreasing() {
+  increase_value_BPM();
+  intervalId = setInterval(increase_value_BPM, 80);
+}
+
+function startDecreasing() {
+  decrease_value_BPM();
+  intervalId = setInterval(decrease_value_BPM, 80);
+}
+
+function stopChanging() {
+  clearInterval(intervalId);
+}
+
+// Функция для увеличения значения BPM
+function increase_value_BPM() {
+  cur_BPM++;
+  if (cur_BPM > 480) cur_BPM = 480;
+  value_BPM.textContent = cur_BPM;
+}
+
+// Функция для уменьшения значения BPM
+function decrease_value_BPM() {
+  cur_BPM--;
+  if (cur_BPM < 30) cur_BPM = 30;
+  value_BPM.textContent = cur_BPM;
+}
+
+// Функция для добавления аккорда
+function addChord() {
+  cur_chords_selected.push({chord_name: notes_octave[chord_selected], chord_type: cur_chord_type_name, note_row: note_row, note_col: note_col, fret: fret_cur});
+  update_Chords_Tab();
+  update_Chords_Buttons();
+}
+
+// Функция для удаления аккорда
+function removeChord() {
+  if (cur_chord_selected_id != -1) cur_chords_selected.splice(cur_chord_selected_id, 1);
+  if (cur_chord_selected_id >= cur_chords_selected.length) cur_chord_selected_id = -1;
+  update_Chords_Tab();
+  update_Chords_Buttons();
+}
+
+// Добавляем event listener на кнопки
+button_increase_value_fret.addEventListener('click', increase_value_fret);
+button_decrease_value_fret.addEventListener('click', decrease_value_fret);
+
+// Event listener: кнопки выбора ноты
+button_A.addEventListener('click', function() {set_Note.call(this, 'A'); });
+button_Ab.addEventListener('click', function() {set_Note.call(this, 'A#'); });
+button_B.addEventListener('click', function() {set_Note.call(this, 'B'); });
+button_C.addEventListener('click', function() {set_Note.call(this, 'C'); });
+button_Cb.addEventListener('click', function() {set_Note.call(this, 'C#'); });
+button_D.addEventListener('click', function() {set_Note.call(this, 'D'); });
+button_Db.addEventListener('click', function() {set_Note.call(this, 'D#'); });
+button_E.addEventListener('click', function() {set_Note.call(this, 'E'); });
+button_F.addEventListener('click', function() {set_Note.call(this, 'F'); });
+button_Fb.addEventListener('click', function() {set_Note.call(this, 'F#'); });
+button_G.addEventListener('click', function() {set_Note.call(this, 'G'); });
+button_Gb.addEventListener('click', function() {set_Note.call(this, 'G#'); });
+
+// Event listener: кнопки выбора аккорда
+button_maj.addEventListener('click', function() {set_ChordType.call(this, 'maj'); });
+button_min.addEventListener('click', function() {set_ChordType.call(this, 'min'); });
+button_7.addEventListener('click', function() {set_ChordType.call(this, '7'); });
+button_5.addEventListener('click', function() {set_ChordType.call(this, '5'); });
+button_dim.addEventListener('click', function() {set_ChordType.call(this, 'dim'); });
+button_dim7.addEventListener('click', function() {set_ChordType.call(this, 'dim7'); });
+
+// Event listener: кнопки добавления и удаления аккорда
+button_addChord.addEventListener('click', function() {addChord(); });
+button_removeChord.addEventListener('click', function() {removeChord(); });
+
+button_replay.addEventListener('click', function() {replay(); });
+button_play.addEventListener('click', function() {play(); });
+
+// Добавляем event listener на кнопки
+button_increase_value_BPM.addEventListener('mousedown', startIncreasing);
+button_decrease_value_BPM.addEventListener('mousedown', startDecreasing);
+document.addEventListener('mouseup', stopChanging);
+
+button_print.addEventListener('click', printTab);
+
+window.addEventListener('resize', render_Canvases, false);
+
+// Обновление текущего аккорда и таблицы
+update_Chord();
+update_Table();
+button_A.classList.add('button_note_checked');
+button_maj.classList.add('button_note_type_checked');
+</script>
