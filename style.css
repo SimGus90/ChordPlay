@@ -124,36 +124,7 @@ footer{
     box-shadow: 0px -10px 0px #d0dcf4; 
 }
 
-@media screen and (min-width: 680px) {
-  main {
-    max-width: 640px;
-    margin: 0 auto 30px auto;
-    padding: 20px;
-    background-color: #f8f8fd;
-    border: 2px solid #d0dcf4;
-    border-radius: 20px;
-    box-shadow: 0px 10px 0px #b3c3ee;
-    }
-  header {
-    border-radius: 0px 0px 20px 20px;
-  }
-  footer {
-    border-radius: 20px 20px 0px 0px;
-  }
-}
-@media screen and (max-width: 680px) {
-  main {
-    padding: 20px;
-    background-color: #f8f8fd;
-    box-shadow: 0px 10px 0px #b3c3ee;
-  }
-  header {
-    border-radius: 0px 0px 0px 0px;
-  }
-  footer {
-    border-radius: 0px 0px 0px 0px;
-  }
-}
+
 
 body{
   margin: 0px;
@@ -186,4 +157,38 @@ body{
 @keyframes animatetop {
     from {top: 0px; opacity:0}
     to {top: 200px; opacity:1}
+}
+
+@media screen and (min-width: 1100px) {
+  main {
+    max-width: 640px;
+    margin: 0 auto 30px auto;
+    padding: 20px;
+    background-color: #f8f8fd;
+    border: 2px solid #d0dcf4;
+    border-radius: 20px;
+    box-shadow: 0px 10px 0px #b3c3ee;
+    }
+  header {
+    border-radius: 0px 0px 20px 20px;
+  }
+  footer {
+    border-radius: 20px 20px 0px 0px;
+  }
+}
+@media screen and (max-width: 1100px) {
+  main {
+    padding: 10px;
+    background-color: #f8f8fd;
+    box-shadow: 0px 10px 0px #b3c3ee;
+  }
+  header {
+    border-radius: 0px 0px 0px 0px;
+  }
+  footer {
+    border-radius: 0px 0px 0px 0px;
+  }
+  .modal {
+    width: 90%;
+  }
 }
