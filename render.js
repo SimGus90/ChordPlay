@@ -34,7 +34,7 @@ function createHiPPICanvas(width, height) {
 
 function render_Table(arr_notes_all, note_row, note_col)
 {
-  let canvas = createHiPPICanvas(800, 200);
+  let canvas = createHiPPICanvas(400, 100);
 
   if (canvas.getContext)
   {
