@@ -16,5 +16,15 @@ data = '[ \
           {"chord_name": "G", "chord_type": "min", "fret": 4}, \
           {"chord_name": "G", "chord_type": "5", "fret": 4}, \
           {"chord_name": "F#", "chord_type": "min", "fret": 4}, \
-          {"chord_name": "F#", "chord_type": "5", "fret": 4}] \
+          {"chord_name": "F#", "chord_type": "5", "fret": 4}], \
+         [{"name": "4"}, \
+          {"bpm": "120"}, \
+          {"chord_name": "G", "chord_type": "min", "fret": 9}, \
+          {"chord_name": "G", "chord_type": "5", "fret": 5}, \
+          {"chord_name": "F#", "chord_type": "min", "fret": 4}, \
+          {"chord_name": "F#", "chord_type": "5", "fret": 4}, \
+          {"chord_name": "G", "chord_type": "5", "fret": 5}, \
+          {"chord_name": "G", "chord_type": "5", "fret": 5}, \
+          {"chord_name": "G", "chord_type": "5", "fret": 5}, \
+          {"chord_name": "G", "chord_type": "5", "fret": 5}] \
         ]'
